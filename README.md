@@ -1,2 +1,2 @@
 # local-weather-app
-app to show local weather
+App to show local weather.  Made for the Freecodecamp intermediate front end developer projects.
