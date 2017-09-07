@@ -16,7 +16,9 @@ function update(weather) {
 }
 
 function updateByGeo(lat,lon){
-var url = "https://api.openweathermap.org/data/2.5/weather?" +
+	
+	var url = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?" +
+//var url = "https://api.openweathermap.org/data/2.5/weather?" +
 	"lat=" + lat +
 	"&lon=" + lon +
 	"&APPID=" + APPID;
