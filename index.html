@@ -1,12 +1,49 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Local Weather App</title>
+    
+    <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+      <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+	
+	<script src="script.js"></script>
+          
+    
+<!--    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap-grid.min.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
+
 <body>
-
-
+    
+    <nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Local Weather App</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+		
+		<div class="icon"><img id="icon" width="75px"/></div>
+		
+		<div class="temperature">It is currently <span id="temperature">0</span>&deg; Celcius</div>
+		
+		<div class="location">in <span id= "location">Unknown</span></div>
+		
+		<div class="humidity"><span id="humidity">0</span>% Humidity</div>
+		
+		<div class="wind">Wind speed: <span id="wind">0</span> mph <span id="direction">N</span></div>
+		
+    </div>
 
 </body>
+
 </html>
