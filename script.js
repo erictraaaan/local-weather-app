@@ -12,12 +12,12 @@ function update(weather) {
 	humidity.innerHTML = weather.humidity;
 	loc.innerHTML = weather.location;
 	temp.innerHTML = weather.temp;
-	icon.src = "https://openweathermap.org/img/w/" + weather.icon +".png";
+	icon.src = "http://api.openweathermap.org/img/w/" + weather.icon +".png";
 }
 
 function updateByGeo(lat,lon){
 	
-	var url = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?" +
+	var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?" +
 //var url = "https://api.openweathermap.org/data/2.5/weather?" +
 	"lat=" + lat +
 	"&lon=" + lon +
