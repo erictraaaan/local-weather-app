@@ -24,14 +24,14 @@ function update(weather) {
 }
 
 function updateByGeo(lat,lon){
-	
-//	var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?" +
-		
-//	var url = "https://fcc-weather-api.glitch.me/api/current?" +
-var url = "https://api.openweathermap.org/data/2.5/weather?" +
-	"lat=" + lat +
-	"&lon=" + lon +
-	"&APPID=" + APPID;
+
+	//	var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?" +
+
+	//	var url = "https://fcc-weather-api.glitch.me/api/current?" +
+	var url = "https://api.openweathermap.org/data/2.5/weather?" +
+		"lat=" + lat +
+		"&lon=" + lon +
+		"&APPID=" + APPID;
 	console.log(url);
 	sendRequest(url);
 }
@@ -71,10 +71,10 @@ function degreesToDirection(degrees){
 	for ( i in angles ){
 		if (degrees >= low && degrees < high )
 			return angles[i];
-		
+
 		low = (low + range) % 360;
 		high = (high + range ) % 360;
-		
+
 	}
 }
 
@@ -107,14 +107,14 @@ window.onload = function () {
 	direction = document.getElementById("direction");
 	unit = document.getElementById("unit");
 	country = document.getElementById("country");
-	
+
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(showPosition);
 	} else {
 		var zip = window.prompt("Enter your zip code");
 		updateByZip(zip);
 	}
-	
+
 	$('.celsius-button').on("click", function() {
 		if (unit.innerHTML == "C"){
 			//don't change anything
@@ -125,7 +125,7 @@ window.onload = function () {
 			unit.innerHTML = "C";
 		}
 	});
-	
+
 	$('.farenheit-button').on("click", function(){
 		if (unit.innerHTML == "C"){
 			//convert to celsius
