@@ -1,0 +1,20 @@
+body{
+	background-image: url(images/cloudy-day.png);
+	background-repeat: repeat;
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+		
+}
+
+a.btn{
+	margin: 8px;
+}
+
+div.divider{
+	margin: 8px;
+}
+
+ main {
+    flex: 1 0 auto;
+  }

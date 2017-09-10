@@ -5,23 +5,34 @@ var icon;
 var humidity;
 var wind;
 var direction;
+var unit;
+var country;
 
 function update(weather) {
 	wind.innerHTML = weather.wind;
-	direction.innerHTML = weather.direction;
+	console.log(weather.direction);
+	if (weather.direction == null){
+		direction.innerHTML = "";
+	} else {
+		direction.innerHTML = weather.direction;
+	}
 	humidity.innerHTML = weather.humidity;
 	loc.innerHTML = weather.location;
 	temp.innerHTML = weather.temp;
 	icon.src = "http://api.openweathermap.org/img/w/" + weather.icon +".png";
+	country.innerHTML = weather.country;
 }
 
 function updateByGeo(lat,lon){
 	
-	var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?" +
-//var url = "https://api.openweathermap.org/data/2.5/weather?" +
+//	var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?" +
+		
+//	var url = "https://fcc-weather-api.glitch.me/api/current?" +
+var url = "https://api.openweathermap.org/data/2.5/weather?" +
 	"lat=" + lat +
 	"&lon=" + lon +
 	"&APPID=" + APPID;
+	console.log(url);
 	sendRequest(url);
 }
 
@@ -37,6 +48,7 @@ function sendRequest(url) {
 			weather.direction = degreesToDirection(data.wind.deg);
 			weather.location = data.name;
 			weather.temp = kelvinToCelcius (data.main.temp);
+			weather.country = data.sys.country;
 			update(weather);
 		}
 	};
@@ -57,7 +69,6 @@ function degreesToDirection(degrees){
 				  "S" , "SSW" , "SW" , "WSW" ,
 				  "W" , "WNW", "NW","NNW"]; 
 	for ( i in angles ){
-		
 		if (degrees >= low && degrees < high )
 			return angles[i];
 		
@@ -78,6 +89,15 @@ function showPosition(position){
 	updateByGeo(position.coords.latitude, position.coords.longitude);
 }
 
+
+function celsiusToFarenheit(value){
+	return Math.round( value * (9/5) + 32 );
+}
+
+function farenheitToCelsius(value){
+	return Math.round( (value-32)/1.8 );
+}
+
 window.onload = function () {
 	temp = document.getElementById("temperature");
 	loc = document.getElementById("location");
@@ -85,6 +105,8 @@ window.onload = function () {
 	humidity = document.getElementById("humidity");
 	wind = document.getElementById("wind");
 	direction = document.getElementById("direction");
+	unit = document.getElementById("unit");
+	country = document.getElementById("country");
 	
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -92,5 +114,26 @@ window.onload = function () {
 		var zip = window.prompt("Enter your zip code");
 		updateByZip(zip);
 	}
-
+	
+	$('.celsius-button').on("click", function() {
+		if (unit.innerHTML == "C"){
+			//don't change anything
+			unit.innerHTML = "C";
+		} else if (unit.innerHTML == "F"){
+			//convert to farenheit
+			temp.innerHTML = farenheitToCelsius(temp.innerHTML);
+			unit.innerHTML = "C";
+		}
+	});
+	
+	$('.farenheit-button').on("click", function(){
+		if (unit.innerHTML == "C"){
+			//convert to celsius
+			temp.innerHTML = celsiusToFarenheit(temp.innerHTML);
+			unit.innerHTML = "F";		
+		} else if (unit.innerHTML == "F"){
+			//don't change anything
+			unit.innerHTML = "F";
+		}
+	})
 };
